@@ -1,0 +1,1 @@
+{"version":3,"file":"DatabaseRootModel.js","sourceRoot":"","sources":["../../src/models/DatabaseRootModel.ts"],"names":[],"mappings":";;AAAA,yCAAuE;AAEvE,MAAa,iBAAkB,SAAQ,iBAAK;IAG1C,MAAM,KAAK,iBAAiB;QAC1B,OAAO,4BAAgB,EAAE,CAAC;IAC5B,CAAC;IAID,MAAM,KAAK,UAAU;QACnB,OAAO,CAAC,SAAS,CAAC,CAAC;IACrB,CAAC;CACF;AAZD,8CAYC"}
