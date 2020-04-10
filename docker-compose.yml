@@ -1,0 +1,12 @@
+  
+version: '3.7'
+
+services:
+  postgres:
+    image: 'postgres'
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=root123
+      - POSTGRES_DB=db
