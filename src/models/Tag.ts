@@ -1,8 +1,8 @@
 import { RelationMappings } from 'objection';
 
-import { BaseModel } from './BaseModel';
+import { DatabaseRootModel } from './DatabaseRootModel';
 
-export class Tag extends BaseModel {
+export class Tag extends DatabaseRootModel {
   readonly id: string;
   readonly name: string;
 
@@ -20,7 +20,7 @@ export class Tag extends BaseModel {
 
   static relationMappings: RelationMappings = {
     baseEntity: {
-      relation: BaseModel.ManyToManyRelation,
+      relation: DatabaseRootModel.ManyToManyRelation,
       modelClass: 'BaseEntity',
       join: {
         from: 'tag.id',

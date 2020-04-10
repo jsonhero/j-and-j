@@ -2,7 +2,7 @@ import { IncomingHttpHeaders } from 'http';
 
 import { Request, Response } from 'express';
 
-import { Context, NamedLogger } from '../utils';
+import { NamedLogger } from '../utils';
 
 const logger: NamedLogger = new NamedLogger('Request');
 
@@ -22,6 +22,6 @@ export function requestLoggerMiddleware<T>(
   next: () => T,
 ): T {
   const { method, url, ip, headers } = req;
-  logger.info({ method, url, ip }, Context.auth, filterHeaders(headers));
+  logger.info({ method, url, ip }, filterHeaders(headers));
   return next();
 }

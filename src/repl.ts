@@ -24,7 +24,7 @@ export function startRepl(options: ReplOptions = {}): repl.REPLServer {
   );
   logger.info(` \t\t\tEx. "a(models.NAME.query());`);
 
-  if (!models.BaseModel.knex()) {
+  if (!models.DatabaseRootModel.knex()) {
     // Only REPL was enabled on startup, this means we want to create a DB connection for REPL usage
     logger.verbose(
       'Knex instance not detected, creating a database service for use in the Repl',
@@ -37,7 +37,7 @@ export function startRepl(options: ReplOptions = {}): repl.REPLServer {
     app: options.app,
   };
   additionalContext.models = models;
-  additionalContext.knex = models.BaseModel.knex();
+  additionalContext.knex = models.DatabaseRootModel.knex();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   additionalContext.a = (...args: any[]) => {
     if (args) {
