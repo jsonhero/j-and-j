@@ -3,11 +3,11 @@ import { NestFactory } from '@nestjs/core';
 
 import { App } from './modules';
 import { NamedLogger } from './utils';
-import { ObjectionExceptionFilter } from './filters';
+import { ObjectionExceptionFilter } from './common/filters';
 import {
   requestLoggerMiddleware,
   responseLoggerMiddleware,
-} from './middlewares';
+} from './common/middlewares';
 
 export async function bootstrap(): Promise<INestApplication | void> {
   const logger = new NamedLogger('Bootstrap');

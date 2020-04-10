@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { NamedLogger } from '../utils';
+import { NamedLogger } from '../../utils';
 
 const logger: NamedLogger = new NamedLogger('Response');
 
