@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TagArgs } from './dto/tag.args';
-import { NewTagInput } from './dto/new-tag.input'; 
+import { NewTagInput } from './dto/newTag.input'; 
 import { Tag } from './models/tag.model';
 import { Tag as model } from '../../models';
 
