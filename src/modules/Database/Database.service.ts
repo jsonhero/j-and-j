@@ -10,11 +10,9 @@ export class DatabaseService {
     DatabaseService.name,
   );
   private static readonly knexMigrations: Knex.MigratorConfig = {
-    directory: `${__dirname}/../../../database_migrations`,
+    directory: `${__dirname}/../../../migrations`,
     tableName: 'knex_migrations',
-    // we run migrations from the transpiled js output of ts. This will
-    //   ignore .d.ts files which get picked up by the default configuration
-    loadExtensions: ['.js'],
+    loadExtensions: ['.js'], // Needed so it doesn't try to run .d.ts files
   };
   private static readonly knexConfig: Knex.Config = {
     client: 'pg',

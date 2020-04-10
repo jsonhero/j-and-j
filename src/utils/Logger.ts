@@ -1,8 +1,5 @@
 import { LoggerService as NestLoggerService } from '@nestjs/common';
 import { Logger as WinstonLogger, createLogger, format, transports } from 'winston';
-
-import { Context } from './Context';
-
 class NestJsContext {
   constructor(readonly context?: string, readonly trace?: string) {}
 }
@@ -137,8 +134,7 @@ export class NamedLogger implements Logger {
             format: format.combine(
               format.timestamp(),
               format.printf((info: Meta) => {
-                const trace = Context.trace || '        ';
-                return `${info.timestamp}|${trace}|${info.level
+                return `${info.timestamp}|${info.level
                   .toUpperCase()
                   .padEnd(maxLevelChars)}[${info.loggerName}]${
                   (info.message && ` ${info.message}`) || ''

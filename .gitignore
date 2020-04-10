@@ -5,19 +5,14 @@
 /.idea
 /.awcache
 /.vscode
+*.iml
 
 # misc
 npm-debug.log
 
-# example
-/quick-start
-
-# tests
-/test
+# test auto gen
 /coverage
 /.nyc_output
 
 # dist
-/dist
-
-*.iml
+/build
