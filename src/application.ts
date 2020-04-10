@@ -4,10 +4,6 @@ import { NestFactory } from '@nestjs/core';
 import { App } from './modules';
 import { NamedLogger } from './utils';
 import { ObjectionExceptionFilter } from './common/filters';
-import {
-  requestLoggerMiddleware,
-  responseLoggerMiddleware,
-} from './common/middlewares';
 
 export async function bootstrap(): Promise<INestApplication | void> {
   const logger = new NamedLogger('Bootstrap');
@@ -26,9 +22,7 @@ export async function bootstrap(): Promise<INestApplication | void> {
 
   // TODO app.enableCors()
 
-  app.use(requestLoggerMiddleware);
   app.useGlobalFilters(new ObjectionExceptionFilter());
-  app.use(responseLoggerMiddleware);
 
   await app.listen(process.env.PORT);
 
