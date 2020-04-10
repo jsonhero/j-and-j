@@ -1,6 +1,6 @@
 import { ColumnNameMappers, Model, snakeCaseMappers } from 'objection';
 
-export class BaseModel extends Model {
+export class DatabaseRootModel extends Model {
   // Standard snake case database table names and column names
   //   models will use standard (java|type)script camelCase
   static get columnNameMappers(): ColumnNameMappers {

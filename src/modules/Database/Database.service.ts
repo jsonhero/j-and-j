@@ -2,7 +2,7 @@ import * as Knex from 'knex';
 import { Injectable } from '@nestjs/common';
 
 import { NamedLogger } from '../../utils';
-import { BaseModel } from '../../models';
+import { DatabaseRootModel } from '../../models';
 
 @Injectable()
 export class DatabaseService {
@@ -43,8 +43,8 @@ export class DatabaseService {
   }
 
   constructor() {
-    if (!BaseModel.knex()) {
-      BaseModel.knex(DatabaseService.getKnex());
+    if (!DatabaseRootModel.knex()) {
+      DatabaseRootModel.knex(DatabaseService.getKnex());
     }
   }
 

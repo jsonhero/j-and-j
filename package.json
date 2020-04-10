@@ -21,6 +21,29 @@
     "lint:prettier": "prettier . --check",
     "clean": "rimraf build coverage"
   },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 0,
+        "branches": 0,
+        "functions": 0,
+        "lines": 0
+      }
+    },
+    "clearMocks": true,
+    "automock": true,
+    "transform": {
+      "^.+\\.(t|j)sx?$": "ts-jest"
+    },
+    "setupFiles": [
+      "<rootDir>/test/setup.ts"
+    ],
+    "roots": [
+      "src",
+      "test"
+    ],
+    "testEnvironment": "node"
+  },
   "dependencies": {
     "@nestjs/common": "7.0.7",
     "@nestjs/core": "7.0.7",

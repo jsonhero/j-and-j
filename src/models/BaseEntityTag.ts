@@ -1,6 +1,6 @@
-import { BaseModel } from './BaseModel';
+import { DatabaseRootModel } from './DatabaseRootModel';
 
-export class BaseEntityTag extends BaseModel {
+export class BaseEntityTag extends DatabaseRootModel {
   readonly tagId: string;
   readonly baseEntityId: string;
 
@@ -18,7 +18,7 @@ export class BaseEntityTag extends BaseModel {
 
   static relationMappings = {
     tag: {
-      relation: BaseModel.BelongsToOneRelation,
+      relation: DatabaseRootModel.BelongsToOneRelation,
       modelClass: 'Tag',
       join: {
         from: 'base_entity_tag.tag_id',
@@ -26,7 +26,7 @@ export class BaseEntityTag extends BaseModel {
       },
     },
     baseEntity: {
-      relation: BaseModel.BelongsToOneRelation,
+      relation: DatabaseRootModel.BelongsToOneRelation,
       modelClass: 'BaseEntity',
       join: {
         from: 'base_entity_tag.base_entity_id',
