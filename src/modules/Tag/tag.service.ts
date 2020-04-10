@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import * as uuid from 'uuid/v4';
+
 import { TagArgs } from './dto/tag.args';
 import { NewTagInput } from './dto/newTag.input'; 
 import { Tag } from './models/tag.model';
-import { Tag as model } from '../../models';
+import { TagModel } from '../../models';
 
 
 @Injectable()
 export class TagService {
   async create(data: NewTagInput): Promise<Tag> {
-    const createdTag = model.query().insert({ ...data });
+    const createdTag = TagModel.query().insert({ id: uuid(), ...data });
     return createdTag;
   }
 
@@ -17,7 +19,7 @@ export class TagService {
   }
 
   async findAll(args: TagArgs): Promise<Tag[]> {
-    return model.query().eager('*');
+    return TagModel.query().eager('*');
   }
 
   async remove(id: string): Promise<boolean> {

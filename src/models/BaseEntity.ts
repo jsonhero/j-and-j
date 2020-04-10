@@ -2,7 +2,7 @@ import { RelationMappings } from 'objection';
 
 import { DatabaseRootModel } from './DatabaseRootModel';
 
-export class BaseEntity extends DatabaseRootModel {
+export class BaseEntityModel extends DatabaseRootModel {
   readonly id: string;
   readonly type: string;
   readonly source: string;

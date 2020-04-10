@@ -5,6 +5,8 @@ import { NotFoundError, ValidationError } from 'objection';
 @Catch(ValidationError, NotFoundError)
 export class ObjectionExceptionFilter implements ExceptionFilter {
   catch(exception: ValidationError | NotFoundError, host: ArgumentsHost): Response {
-    return host.switchToHttp().getResponse<Response>().status(exception.statusCode).json(exception);
+    // return host.switchToHttp().getResponse<Response>().status(exception.statusCode).json(exception);
+    console.log(exception);
+    return null;
   }
 }

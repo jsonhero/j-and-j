@@ -2,7 +2,7 @@ import { RelationMappings } from 'objection';
 
 import { DatabaseRootModel } from './DatabaseRootModel';
 
-export class Tag extends DatabaseRootModel {
+export class TagModel extends DatabaseRootModel {
   readonly id: string;
   readonly name: string;
 

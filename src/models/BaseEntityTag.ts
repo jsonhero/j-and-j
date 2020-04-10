@@ -1,6 +1,6 @@
 import { DatabaseRootModel } from './DatabaseRootModel';
 
-export class BaseEntityTag extends DatabaseRootModel {
+export class BaseEntityTagModel extends DatabaseRootModel {
   readonly tagId: string;
   readonly baseEntityId: string;
 
