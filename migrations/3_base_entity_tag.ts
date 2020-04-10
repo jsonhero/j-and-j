@@ -5,10 +5,10 @@ export async function up(knex: Knex): Promise<void> {
     'base_entity_tag',
     (tableBuilder: Knex.TableBuilder) => {
 
-      tableBuilder.primary(['person_id', 'club_id'], 'id');
-      tableBuilder.uuid('tagId').notNullable().references('tag.id').index('tag_id_index');
+      tableBuilder.primary(['tag_id', 'base_entity_id'], 'id');
+      tableBuilder.uuid('tag_id').notNullable().references('tag.id').index('tag_id_index');
       tableBuilder
-        .uuid('baseEntityId')
+        .uuid('base_entity_id')
         .notNullable()
         .references('base_entity.id').index('base_entity_id_index');
     },
