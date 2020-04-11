@@ -1,8 +1,12 @@
 import { DatabaseService } from './modules';
-import { NamedLogger } from './utils';
+import { namedLogger } from './utils';
+
+export async function createDatabaseIfNotExist(): Promise<void> {
+  await DatabaseService.createDatabaseIfNotExist();
+}
 
 export async function migrations(closeKnexOnFinish = true): Promise<void> {
-  const logger = new NamedLogger('Migrations');
+  const logger = namedLogger('Migrations');
   logger.info(
     'Database migrations enabled: Checking status of the database...',
   );

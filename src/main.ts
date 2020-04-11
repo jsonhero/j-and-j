@@ -1,5 +1,4 @@
 import * as yn from 'yn';
-import { INestApplication } from '@nestjs/common';
 
 import { dotEnvironment } from './dotenv';
 
@@ -10,24 +9,26 @@ import { dotEnvironment } from './dotenv';
  */
 async function main(): Promise<void> {
   dotEnvironment();
+  require('./configureLogger').configureLogger();
 
-  const migrations = yn(process.env.ENABLE_DB_MIGRATIONS);
-  const application = yn(process.env.ENABLE_API);
-  const repl = yn(process.env.ENABLE_REPL);
+  const settings = {
+    createDatabase: yn(process.env.CREATE_DB_IF_NOT_EXIST),
+    migrations: yn(process.env.ENABLE_DB_MIGRATIONS),
+    api: yn(process.env.ENABLE_API),
+    repl: yn(process.env.ENABLE_REPL),
+  };
 
-  // We don't close knex if we plan on using it later
-  const closeKnexAfterMigration = !application && !repl;
+  const runners = {
+    createDatabase: () => require('./database').createDatabaseIfNotExist(),
+    migrations: () => require('./database').migrations(!settings.api && !settings.repl),
+    api: () => require('./application').bootstrap(),
+    repl: () => require('./repl').startRepl(),
+  };
 
-  let app: INestApplication;
-
-  if (migrations) {
-    await require('./database').migrations(closeKnexAfterMigration);
-  }
-  if (application) {
-    app = await require('./application').bootstrap();
-  }
-  if (repl) {
-    await require('./repl').startRepl({ app });
+  for (let runner in runners) {
+    if (settings[runner]) {
+      await runners[runner]();
+    }
   }
 }
 

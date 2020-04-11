@@ -4,14 +4,14 @@ import { INestApplication } from '@nestjs/common';
 
 import * as models from './models';
 import { DatabaseService } from './modules';
-import { NamedLogger } from './utils';
+import { namedLogger } from './utils';
 
 interface ReplOptions {
   app?: INestApplication;
 }
 
 export function startRepl(options: ReplOptions = {}): repl.REPLServer {
-  const logger = new NamedLogger('Repl');
+  const logger = namedLogger('Repl');
   logger.info(`Repl interface enabled: Starting...`);
   logger.info(` Globals available to you:`);
   logger.info(
@@ -26,16 +26,14 @@ export function startRepl(options: ReplOptions = {}): repl.REPLServer {
 
   if (!models.DatabaseRootModel.knex()) {
     // Only REPL was enabled on startup, this means we want to create a DB connection for REPL usage
-    logger.verbose(
+    logger.trace(
       'Knex instance not detected, creating a database service for use in the Repl',
     );
     new DatabaseService();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const additionalContext: any = {
-    app: options.app,
-  };
+  const additionalContext: any = {};
   additionalContext.models = models;
   additionalContext.knex = models.DatabaseRootModel.knex();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
